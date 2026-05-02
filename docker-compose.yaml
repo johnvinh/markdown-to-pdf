@@ -1,0 +1,9 @@
+services:
+  redis:
+    image: 'redis:8.8-m03'
+    container_name: 'redis'
+  app:
+    build: .
+    container_name: 'app'
+    ports:
+      - '8000:8000'
