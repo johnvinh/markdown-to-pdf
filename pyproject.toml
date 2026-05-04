@@ -15,3 +15,12 @@ dependencies = [
     "uvicorn>=0.46.0",
     "weasyprint>=68.1",
 ]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
