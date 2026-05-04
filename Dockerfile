@@ -2,6 +2,15 @@ FROM python:3.13-slim
 
 COPY --from=ghcr.io/astral-sh/uv:0.11.8 /uv /uvx /bin/
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        libpango-1.0-0 \
+        libpangoft2-1.0-0 \
+        libharfbuzz0b \
+        fontconfig \
+        fonts-dejavu \
+        fonts-liberation \
+    && rm -rf /var/lib/apt/lists/* \
+
 ENV UV_COMPILE_BYTECODE=1
 ENV UV_LINK_MODE=copy
 
