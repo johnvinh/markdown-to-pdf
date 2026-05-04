@@ -1,7 +1,13 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Response
+from pydantic import BaseModel
+from markdown_to_pdf import markdown_to_pdf
+
+class Markdown(BaseModel):
+    markdown: str
 
 app = FastAPI()
 
-@app.get("/")
-async def root():
-    return {"message": "Hello World"}
+@app.post("/")
+async def root(markdown: Markdown):
+    pdf_file = markdown_to_pdf(markdown.markdown)
+    return Response(content=pdf_file, media_type="application/pdf")
